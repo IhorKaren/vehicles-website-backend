@@ -5,6 +5,7 @@
   "scripts": {
     "start": "tsc && cross-env NODE_ENV=production node ./dist/server.js",
     "start:dev": "cross-env NODE_ENV=development nodemon ./src/server.ts",
+    "dev": "nodemon --watch src --exec ts-node src/server.ts",
     "lint": "eslint **/*.ts",
     "lint:fix": "eslint --fix **/*.ts"
   },
