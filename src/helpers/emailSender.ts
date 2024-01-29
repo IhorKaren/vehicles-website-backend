@@ -1,4 +1,7 @@
 import { createTransport } from "nodemailer";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const transporter = createTransport({
   host: "smtp.elasticemail.com",
