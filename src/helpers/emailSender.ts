@@ -4,14 +4,14 @@ const transporter = createTransport({
   host: "smtp.elasticemail.com",
   port: 2525,
   auth: {
-    user: "karenihor@gmail.com",
-    pass: "D22B462B19F7233D72FB9F22490ABBDDBCF0",
+    user: process.env.SENDER_LOGIN,
+    pass: process.env.SENDER_PASSWORD,
   },
 });
 
 function emailSender({ email, smtp }) {
   const newMessage = {
-    from: "karenihor@gmail.com",
+    from: process.env.SENDER_LOGIN,
     to: email,
     subject: "SMTP",
     html: `<p>Your one-time access password <b>${smtp}</b></p>`,
