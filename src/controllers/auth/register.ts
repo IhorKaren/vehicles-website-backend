@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 
 import { User } from "../../models/user/user";
-import { HttpError } from "../../helpers";
+import { HttpError, emailSender } from "../../helpers";
 
 const register = async (req: Request, res: Response) => {
   const { email, password } = req.body;
@@ -14,8 +14,13 @@ const register = async (req: Request, res: Response) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
+  const smtp = Math.floor(1000 + Math.random() * 9000);
+
+  emailSender({ email, smtp });
+
   const newUser = await User.create({
     ...req.body,
+    smtp,
     password: hashPassword,
   });
 

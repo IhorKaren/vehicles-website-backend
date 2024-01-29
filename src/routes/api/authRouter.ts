@@ -22,4 +22,8 @@ authRouter.post("/logout", authenticate, authControllers.logout);
 
 authRouter.get("/current", authenticate, authControllers.getCurrent);
 
+authRouter.post("/resend-smtp", authControllers.resendSMTP);
+
+authRouter.post("/confirm-smtp", authControllers.confirmSMTP);
+
 export default authRouter;
