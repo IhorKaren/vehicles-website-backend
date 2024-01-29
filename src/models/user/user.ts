@@ -6,6 +6,7 @@ import { handleMongooseError } from "../../helpers";
 export interface IUser extends Document {
   name: string;
   email: string;
+  smtp: string;
   password: string;
   token: string;
 }
@@ -32,6 +33,7 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       unique: true,
     },
+    smtp: { type: String, default: "" },
     password: {
       type: String,
       required: [true, "Set password for user"],
