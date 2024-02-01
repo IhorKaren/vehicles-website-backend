@@ -10,6 +10,7 @@ export interface IUser extends Document {
   smtp: string;
   password: string;
   accountType: string;
+  membership: string;
   token: string;
 }
 
@@ -50,7 +51,13 @@ const userSchema = new Schema(
     },
     accountType: {
       type: String,
-      enum: ["member", "seller", "agent", "admin"],
+      required: true,
+      enum: ["private", "trader", "business", "admin"],
+    },
+    membership: {
+      type: String,
+      enum: ["guest", "basic", "premier"],
+      default: "guest",
     },
   },
   { versionKey: false, timestamps: true }
@@ -59,7 +66,9 @@ const userSchema = new Schema(
 userSchema.post("save", handleMongooseError);
 
 const registerSchema = Joi.object({
-  name: Joi.string().required(),
+  firstName: Joi.string().required(),
+  lastName: Joi.string().required(),
+  accountType: Joi.string().required(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
