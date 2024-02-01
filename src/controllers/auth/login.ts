@@ -32,6 +32,8 @@ const login = async (req: Request, res: Response) => {
     res.json({
       firstName: user.firstName,
       lastName: user.lastName,
+      membership: user.membership,
+      accountType: user.accountType,
       email,
       token,
     });
@@ -40,6 +42,8 @@ const login = async (req: Request, res: Response) => {
   res.json({
     firstName: user.firstName,
     lastName: user.lastName,
+    membership: user.membership,
+    accountType: user.accountType,
     email,
     token: user.token,
   });
