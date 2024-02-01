@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 import { User } from "../../models/user/user";
 import { HttpError, emailSender } from "../../helpers";
@@ -24,9 +25,21 @@ const register = async (req: Request, res: Response) => {
     password: hashPassword,
   });
 
+  const payload = {
+    id: newUser._id,
+  };
+
+  const token = jwt.sign(payload, process.env.SECRET_KEY, {
+    expiresIn: "1w",
+  });
+
+  await User.findByIdAndUpdate(newUser._id, { token });
+
   res.status(201).json({
     email: newUser.email,
-    name: newUser.name,
+    firstName: newUser.firstName,
+    lastName: newUser.lastName,
+    token,
   });
 };
 

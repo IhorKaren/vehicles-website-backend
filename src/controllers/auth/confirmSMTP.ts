@@ -30,7 +30,8 @@ const confirmSMTP = async (req: Request, res: Response) => {
 
   res.status(200).json({
     email: user.email,
-    name: user.name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     token,
   });
 };

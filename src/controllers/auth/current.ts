@@ -2,11 +2,12 @@ import { Request, Response } from "express";
 import { IUser } from "../../models/user/user";
 
 const getCurrent = async (req: Request, res: Response) => {
-  const { email, name, token }: IUser = req.user as IUser;
+  const { email, firstName, lastName, token }: IUser = req.user as IUser;
 
   res.json({
     email,
-    name,
+    firstName,
+    lastName,
     token,
   });
 };

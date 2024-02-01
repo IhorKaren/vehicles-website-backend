@@ -4,10 +4,12 @@ import Joi from "joi";
 import { handleMongooseError } from "../../helpers";
 
 export interface IUser extends Document {
-  name: string;
+  firstName: string;
+  lastName: string;
   email: string;
   smtp: string;
   password: string;
+  accountType: string;
   token: string;
 }
 
@@ -24,7 +26,11 @@ const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const userSchema = new Schema(
   {
-    name: {
+    firstName: {
+      type: String,
+      required: true,
+    },
+    lastName: {
       type: String,
       required: true,
     },
@@ -41,6 +47,10 @@ const userSchema = new Schema(
     token: {
       type: String,
       default: "",
+    },
+    accountType: {
+      type: String,
+      enum: ["member", "seller", "agent", "admin"],
     },
   },
   { versionKey: false, timestamps: true }

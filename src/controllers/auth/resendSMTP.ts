@@ -20,7 +20,8 @@ const resendSMTP = async (req: Request, res: Response) => {
   });
 
   res.status(200).json({
-    name: user.name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email,
   });
 };

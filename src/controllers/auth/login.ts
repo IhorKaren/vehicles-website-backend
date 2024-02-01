@@ -30,14 +30,16 @@ const login = async (req: Request, res: Response) => {
     await User.findByIdAndUpdate(user._id, { token });
 
     res.json({
-      name: user.name,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email,
       token,
     });
   }
 
   res.json({
-    name: user.name,
+    firstName: user.firstName,
+    lastName: user.lastName,
     email,
     token: user.token,
   });
