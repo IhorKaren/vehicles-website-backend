@@ -55,6 +55,9 @@ const userSchema = new Schema(
       required: true,
       enum: ["private", "trader", "business", "admin"],
     },
+    companyName: {
+      type: String,
+    },
     membership: {
       type: String,
       enum: ["guest", "basic", "premier"],
