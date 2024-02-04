@@ -11,7 +11,9 @@ export interface IUser extends Document {
   password: string;
   accountType: string;
   membership: string;
-  companyName: string;
+  companyName?: string;
+  companyCode?: string;
+  companyAddress?: string;
   token: string;
 }
 
@@ -58,6 +60,12 @@ const userSchema = new Schema(
     companyName: {
       type: String,
     },
+    companyCode: {
+      type: String,
+    },
+    companyAddress: {
+      type: String,
+    },
     membership: {
       type: String,
       enum: ["guest", "basic", "premier"],
@@ -73,6 +81,8 @@ const registerSchema = Joi.object({
   firstName: Joi.string().required(),
   lastName: Joi.string().required(),
   companyName: Joi.string(),
+  companyCode: Joi.string(),
+  companyAddress: Joi.string(),
   accountType: Joi.string().required(),
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
