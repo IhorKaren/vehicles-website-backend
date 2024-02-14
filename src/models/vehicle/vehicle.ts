@@ -121,6 +121,6 @@ const vehicleSchema = new Schema(
 
 vehicleSchema.post("save", handleMongooseError);
 
-const Vehicle = model<IVehicle>("user", vehicleSchema);
+const Vehicle = model<IVehicle>("vehicle", vehicleSchema);
 
 export { Vehicle };
