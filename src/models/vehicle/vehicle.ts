@@ -25,13 +25,13 @@ export interface IVehicle extends Document {
     technicalCondition: string;
     damage: boolean;
   };
-  contactInformation: {
+  contactInfo: {
     name: string;
     phone: string;
     email: string;
     city: string;
   };
-  additional_information: {
+  additionalInfo: {
     description: string;
     photos: string[];
   };
@@ -105,13 +105,13 @@ const vehicleSchema = new Schema(
       technicalCondition: { type: String, required: true },
       damage: { type: Boolean, required: true },
     },
-    contactInformation: {
+    contactInfo: {
       name: { type: String, required: true },
       phone: { type: String, required: true },
       email: { type: String, required: true },
       city: { type: String, required: true },
     },
-    additional_information: {
+    additionalInfo: {
       description: { type: String, required: true },
       photos: { type: [String], required: true },
     },
